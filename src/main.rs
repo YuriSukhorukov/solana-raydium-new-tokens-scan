@@ -63,8 +63,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let signature = Signature::from_str(&s).unwrap();
                 let tx = rpc_client.get_transaction_with_config(&signature, config).unwrap();
 
-                let json = if let EncodedTransaction::Json(j) = tx.transaction.transaction {
-                    Some(j)
+                let json = if let EncodedTransaction::Json(t) = tx.transaction.transaction {
+                    Some(t)
                 } else {
                     None
                 };
