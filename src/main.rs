@@ -30,14 +30,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let SEARCH_INSTRUCTION = "initialize2";
     let RAYDIUM_ADDRESS = "675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8";
 
-    let mainnet_http_solana = std::env::var("HTTP_URL").expect("HTTP_URL variable is not set").to_string();
-    let websocket_url = std::env::var("WSS_URL").expect("WSS_URL variable is not set");
+    let http_url = std::env::var("HTTP_URL").expect("HTTP_URL variable is not set").to_string();
+    let wss_url = std::env::var("WSS_URL").expect("WSS_URL variable is not set");
 
-    println!("{}\n{}", mainnet_http_solana, websocket_url);
+    println!("{}\n{}", http_url, wss_url);
 
     let rpc_commitment_config = CommitmentConfig::finalized();
-    let rpc_client = RpcClient::new_with_commitment(mainnet_http_solana, rpc_commitment_config);
-    let client = PubsubClient::new(&websocket_url).await?;
+    let rpc_client = RpcClient::new_with_commitment(http_url, rpc_commitment_config);
+    let client = PubsubClient::new(&wss_url).await?;
 
     let (mut stream, _) = client.logs_subscribe(RpcTransactionLogsFilter::All, RpcTransactionLogsConfig {
         commitment: Some(CommitmentConfig::finalized())
