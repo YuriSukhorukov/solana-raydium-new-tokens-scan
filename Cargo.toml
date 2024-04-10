@@ -1,0 +1,13 @@
+[package]
+name = "solana-raydium-new-tokens-scan"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenv = "0.15.0"
+futures-util = "0.3.30"
+solana-client = "1.18.9"
+solana-program = "1.18.9"
+solana-sdk = "1.18.9"
+solana-transaction-status = "1.18.10"
+tokio = "1.37.0"
